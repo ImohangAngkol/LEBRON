@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Royal Rental</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+        .signup-bg {
+            background-image: url('/Images/diddies.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .form-container {
+            backdrop-filter: blur(8px);
+        }
+        .password-strength {
+            height: 4px;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="/Images/King_s_Crown-removebg-preview.png" alt="Royal Rent Logo" class="h-10 mr-2">
+                <span class="text-2xl font-bold text-gray-800">ROYAL RENT</span>
+            </div>
+            <div>
+                <a href="index.html" class="text-gray-800 hover:text-yellow-600 font-medium">Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sign Up Section -->
+    <section class="signup-bg min-h-screen flex items-center justify-center p-4">
+        <div class="form-container bg-white bg-opacity-90 rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Create Your Account</h2>
+                <p class="text-gray-600 mt-2">Join Royal Rent today</p>
+            </div>
+
+            <form id="signupForm" class="space-y-4">
+                <!-- Name Fields -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-gray-700 mb-1">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required
+                               class="w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                               placeholder="Juan">
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-gray-700 mb-1">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required
+                               class="w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                               placeholder="Dela Cruz">
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div>
+                    <label for="email" class="block text-gray-700 mb-1">Email Address</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input type="email" id="email" name="email" required
+                               class="w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                               placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div>
+                    <label for="phone" class="block text-gray-700 mb-1">Phone Number</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="text-gray-400">+63</span>
+                        </div>
+                        <input type="tel" id="phone" name="phone" required
+                               class="w-full pl-14 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                               placeholder="912 345 6789" pattern="[0-9]{3} [0-9]{3} [0-9]{4}">
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" name="password" required
+                               class="w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                               placeholder="••••••••">
+                        <button type="button" id="togglePassword" class="absolute right-3 top-3 text-gray-400 hover:text-yellow-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength-container mt-2">
+                        <div id="passwordStrength" class="password-strength rounded-full bg-gray-200 w-0"></div>
+                    </div>
+                    <ul class="text-xs text-gray-500 mt-1 pl-5 list-disc">
+                        <li id="lengthRequirement">At least 8 characters</li>
+                        <li id="numberRequirement">Contains a number</li>
+                        <li id="specialRequirement">Contains a special character</li>
+                    </ul>
+                </div>
+
+                <!-- Confirm Password -->
+                <div>
+                    <label for="confirmPassword" class="block text-gray-700 mb-1">Confirm Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required
+                               class="w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"
+                               placeholder="••••••••">
+                    </div>
+                    <p id="passwordMatch" class="text-xs mt-1 hidden text-green-600">Passwords match!</p>
+                    <p id="passwordMismatch" class="text-xs mt-1 hidden text-red-600">Passwords do not match</p>
+                </div>
+
+                <!-- License Upload -->
+                <div>
+                    <label for="license" class="block text-gray-700 mb-1">Driver's License (Upload)</label>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="license" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <i class="fas fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500">PNG, JPG, or PDF (Max 5MB)</p>
+                            </div>
+                            <input id="license" name="license" type="file" class="hidden" accept=".png,.jpg,.jpeg,.pdf" required>
+                        </label>
+                    </div>
+                    <div id="fileName" class="text-xs text-gray-500 mt-1"></div>
+                </div>
+
+                <!-- Terms Agreement -->
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="terms" name="terms" type="checkbox" required
+                               class="focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-300 rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="terms" class="font-medium text-gray-700">I agree to the <a href="terms.html" class="text-yellow-600 hover:underline">Terms of Service</a> and <a href="privacy.html" class="text-yellow-600 hover:underline">Privacy Policy</a></label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="signupButton"
+                        class="w-full bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-yellow-700 transition duration-300 flex justify-center items-center">
+                    <span id="buttonText">Create Account</span>
+                    <svg id="loadingSpinner" class="hidden animate-spin ml-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Login Link -->
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Already have an account? <a href="login.html" class="text-yellow-600 font-medium hover:underline">Log in</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 Royal Rent. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-yellow-600"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-yellow-600"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-yellow-600"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle Password Visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const confirmField = document.getElementById('confirmPassword');
+            const icon = this.querySelector('i');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                confirmField.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                confirmField.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        // Password Strength Checker
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('passwordStrength');
+            const lengthReq = document.getElementById('lengthRequirement');
+            const numberReq = document.getElementById('numberRequirement');
+            const specialReq = document.getElementById('specialRequirement');
+            
+            let strength = 0;
+            
+            // Length check
+            if (password.length >= 8) {
+                strength += 1;
+                lengthReq.style.color = '#16a34a'; // green
+            } else {
+                lengthReq.style.color = '';
+            }
+            
+            // Number check
+            if (/\d/.test(password)) {
+                strength += 1;
+                numberReq.style.color = '#16a34a';
+            } else {
+                numberReq.style.color = '';
+            }
+            
+            // Special character check
+            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                strength += 1;
+                specialReq.style.color = '#16a34a';
+            } else {
+                specialReq.style.color = '';
+            }
+            
+            // Update strength bar
+            const width = (strength / 3) * 100;
+            strengthBar.style.width = `${width}%`;
+            
+            if (strength === 1) {
+                strengthBar.style.backgroundColor = '#ef4444'; // red
+            } else if (strength === 2) {
+                strengthBar.style.backgroundColor = '#f59e0b'; // yellow
+            } else if (strength === 3) {
+                strengthBar.style.backgroundColor = '#16a34a'; // green
+            } else {
+                strengthBar.style.backgroundColor = '#e5e7eb'; // gray
+            }
+        });
+
+        // Password Match Checker
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            const matchMsg = document.getElementById('passwordMatch');
+            const mismatchMsg = document.getElementById('passwordMismatch');
+            
+            if (confirmPassword.length === 0) {
+                matchMsg.classList.add('hidden');
+                mismatchMsg.classList.add('hidden');
+                return;
+            }
+            
+            if (password === confirmPassword) {
+                matchMsg.classList.remove('hidden');
+                mismatchMsg.classList.add('hidden');
+            } else {
+                matchMsg.classList.add('hidden');
+                mismatchMsg.classList.remove('hidden');
+            }
+        });
+
+        // File Upload Display
+        document.getElementById('license').addEventListener('change', function() {
+            const fileName = this.files[0]?.name || 'No file selected';
+            document.getElementById('fileName').textContent = fileName;
+        });
+
+        // Form Submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const signupButton = document.getElementById('signupButton');
+            const buttonText = document.getElementById('buttonText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            // Show loading state
+            buttonText.textContent = 'Creating account...';
+            loadingSpinner.classList.remove('hidden');
+            signupButton.disabled = true;
+            
+            // Validate password match
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                buttonText.textContent = 'Create Account';
+                loadingSpinner.classList.add('hidden');
+                signupButton.disabled = false;
+                return;
+            }
+            
+            // Simulate API call (replace with actual fetch)
+            setTimeout(() => {
+                // For demo purposes - replace with actual registration
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: '+63' + document.getElementById('phone').value.replace(/\s/g, ''),
+                    password: password,
+                    license: document.getElementById('license').files[0]?.name,
+                    terms: document.getElementById('terms').checked
+                };
+                
+                console.log('Registration attempt with:', formData);
+                
+                // Reset button state
+                buttonText.textContent = 'Create Account';
+                loadingSpinner.classList.add('hidden');
+                signupButton.disabled = false;
+                
+                // Redirect on successful registration
+                window.location.href = 'verification.html';
+                
+                /* Actual implementation would look like:
+                const formData = new FormData(this);
+                formData.set('phone', '+63' + formData.get('phone').replace(/\s/g, ''));
+                
+                fetch('/api/register', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = 'verification.html';
+                    } else {
+                        alert(data.message || 'Registration failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred during registration');
+                })
+                .finally(() => {
+                    buttonText.textContent = 'Create Account';
+                    loadingSpinner.classList.add('hidden');
+                    signupButton.disabled = false;
+                });
+                */
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

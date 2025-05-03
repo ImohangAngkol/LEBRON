@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Royal Rental</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+        .hero-bg {
+            background-image: url('/Images/cer.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .testimonial-slide {
+            transition: opacity 1s ease-in-out;
+        }
+        .testimonial-slide.hidden {
+            opacity: 0;
+            display: none;
+        }
+        .map-container {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .how-it-works-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- 1️⃣ Navigation Bar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="/Images/King_s_Crown-removebg-preview.png" alt="Royal Rent Logo" class="h-10 mr-2">
+                <span class="text-2xl font-bold text-gray-800">ROYAL RENT</span>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-800 hover:text-yellow-600 font-medium py-2 border-b-2 border-yellow-600">Home</a>
+                <a href="#cars" class="text-gray-800 hover:text-yellow-600 font-medium py-2">Available Cars</a>
+                <a href="#about" class="text-gray-800 hover:text-yellow-600 font-medium py-2">About Us</a>
+                <a href="#contact" class="text-gray-800 hover:text-yellow-600 font-medium py-2">Contact</a>
+            </nav>
+            
+            <!-- Login/Signup -->
+            <div class="flex items-center space-x-4">
+                <a href="login.html" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-black transition duration-300 font-medium">
+                    <i class="fas fa-user mr-2"></i>Login
+                </a>
+                <a href="signup.html" class="hidden md:block bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2️⃣ Hero Section -->
+    <section class="hero-bg h-96 flex items-center">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl bg-black bg-opacity-70 p-8 rounded-lg">
+                <h1 class="text-4xl font-bold text-white mb-4">Rent the perfect car for your Philippine adventure!</h1>
+                
+                <!-- Search Form -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label class="block text-white mb-1">Pick-up Date</label>
+                        <input type="date" class="w-full p-2 rounded">
+                    </div>
+                    <div>
+                        <label class="block text-white mb-1">Return Date</label>
+                        <input type="date" class="w-full p-2 rounded">
+                    </div>
+                    <div>
+                        <label class="block text-white mb-1">Car Type</label>
+                        <select class="w-full p-2 rounded">
+                            <option>All Types</option>
+                            <option>Economy</option>
+                            <option>SUV</option>
+                            <option>Van</option>
+                            <option>Luxury</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-white mb-1">Pick-up Location</label>
+                    <select class="w-full p-2 rounded">
+                        <option>Manila</option>
+                        <option>Cebu</option>
+                        <option>Davao</option>
+                        <option>Bohol</option>
+                        <option>Palawan</option>
+                    </select>
+                </div>
+                
+                <button class="bg-yellow-600 text-white font-bold py-3 px-6 rounded hover:bg-yellow-700 transition w-full">
+                    Search Available Cars
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3️⃣ Available Cars Section -->
+    <section id="cars" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Available Vehicles</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Car Card 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <img src="/Images/My_Glorious_King_Lebron.jpg" alt="Toyota Vios" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Toyota Vios</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-yellow-600 font-bold">₱1,500/day</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Available</span>
+                        </div>
+                        <button class="w-full bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700 transition">
+                            Rent Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Car Card 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <img src="/Images/My_Glorious_King_Lebron.jpg" alt="Mitsubishi Montero" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Mitsubishi Montero</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-yellow-600 font-bold">₱2,800/day</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Available</span>
+                        </div>
+                        <button class="w-full bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700 transition">
+                            Rent Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Car Card 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <img src="/Images/My_Glorious_King_Lebron.jpg" alt="Toyota Innova" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Toyota Innova</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-yellow-600 font-bold">₱2,200/day</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">Booked</span>
+                        </div>
+                        <button class="w-full bg-gray-300 text-gray-600 py-2 rounded cursor-not-allowed" disabled>
+                            Unavailable
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <button onclick="window.location.href='ViewVehicles.html'" 
+                        class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+                    View All Vehicles
+                </button>
+            </div>
+
+    <!-- 4️⃣ How It Works Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="how-it-works-card bg-gray-50 text-center p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="bg-yellow-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                    <h3 class="text-xl font-bold mb-2">Choose Me </h3><!-- Gotta remember to erase this -->
+                    <p class="text-gray-600">Select from our wide range of vehicles</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="how-it-works-card bg-gray-50 text-center p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="bg-yellow-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                    <h3 class="text-xl font-bold mb-2">Book Online</h3>
+                    <p class="text-gray-600">Complete your booking in minutes</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="how-it-works-card bg-gray-50 text-center p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="bg-yellow-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                    <h3 class="text-xl font-bold mb-2">Pick Up</h3>
+                    <p class="text-gray-600">Collect your car at our location</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="how-it-works-card bg-gray-50 text-center p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="bg-yellow-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
+                    <h3 class="text-xl font-bold mb-2">Enjoy Your Ride</h3>
+                    <p class="text-gray-600">Explore the Philippines comfortably</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5️⃣ Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-500 text-2xl mr-2">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"The one and true king! My Glorious King Lebron!!"</p> <!--basin kalimot nasasd kog delete diari-->
+                    <div class="flex items-center">
+                        <img src="/Images/My_Glorious_King_Lebron.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Lebron James</h4>
+                            <p class="text-gray-600 text-sm">Manila</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-500 text-2xl mr-2">
+                            ★★★★☆
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"This Rental business will always be my GOAT like myself!"</p>
+                    <div class="flex items-center">
+                        <img src="/Images/LebronSunshine.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Lebron James</h4>
+                            <p class="text-gray-600 text-sm">Cebu</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-500 text-2xl mr-2">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"Lebron is the TRUE GOAT!"</p> <!--ayg kalimot yel-->
+                    <div class="flex items-center">
+                        <img src="/Images/MJ.png" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael Jordan</h4>
+                            <p class="text-gray-600 text-sm">Davao</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6️⃣ About Us Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h2 class="text-3xl font-bold mb-6">About Royal Rent</h2>
+                    <p class="text-gray-700 mb-4">
+                        Founded by yelyel(naforce ug tuon frontend), Royal Rent has been providing premium car rental services across the Philippines since 2015. We specialize in offering well-maintained vehicles at competitive prices.
+                    </p>
+                    <p class="text-gray-700 mb-6">
+                        Our mission is to make your travel experience in the Philippines comfortable, convenient, and memorable.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-yellow-600 mr-2"></i>
+                            <span class="text-gray-700">100+ vehicles in our fleet</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-yellow-600 mr-2"></i>
+                            <span class="text-gray-700">24/7 roadside assistance</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-yellow-600 mr-2"></i>
+                            <span class="text-gray-700">Multiple locations nationwide</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="/Images/bald.jpg" alt="Royal Rent Office" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7️⃣ Contact Section with Philippine Google Maps -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2 bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-6 text-yellow-600">Get In Touch</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-1">Full Name</label>
+                            <input type="text" class="w-full p-3 border rounded focus:ring-2 focus:ring-yellow-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Email Address</label>
+                            <input type="email" class="w-full p-3 border rounded focus:ring-2 focus:ring-yellow-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Message</label>
+                            <textarea rows="4" class="w-full p-3 border rounded focus:ring-2 focus:ring-yellow-500"></textarea>
+                        </div>
+                        <button type="submit" class="bg-yellow-600 text-white font-bold py-3 px-6 rounded hover:bg-yellow-700 transition w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-2xl font-bold mb-6 text-yellow-600">Our Main Office</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-yellow-600 mt-1 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Address</h4>
+                                    <p class="text-gray-600">123 Ayala Avenue, Makati City, Metro Manila, Philippines</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone-alt text-yellow-600 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">+63 2 8123 4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-yellow-600 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">info@royalrent.ph</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-yellow-600 mt-1 mr-4 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Business Hours</h4>
+                                    <p class="text-gray-600">Monday to Friday: 8:00 AM - 7:00 PM</p>
+                                    <p class="text-gray-600">Saturday: 9:00 AM - 5:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="map-container mt-6">
+                            <!-- Google Maps Embed for Makati, Philippines -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.785859724876!2d121.01485331528794!3d14.554843781894812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90264a0ed01%3A0x2b066ed57830cace!2sAyala%20Ave%2C%20Makati%2C%20Metro%20Manila%2C%20Philippines!5e0!3m2!1sen!2sus!4v1689878917453!5m2!1sen!2sus" 
+                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8️⃣ Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-600 border-b border-yellow-600 pb-2">Royal Rent</h3>
+                    <p class="mb-4 text-gray-400">Your trusted car rental partner in the Philippines since 2015.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-yellow-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-600 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-600 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-600 border-b border-yellow-600 pb-2">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-600 transition">Home</a></li>
+                        <li><a href="#cars" class="text-gray-400 hover:text-yellow-600 transition">Available Cars</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-yellow-600 transition">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-yellow-600 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-600 border-b border-yellow-600 pb-2">Contact</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-yellow-600 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Makati City, Philippines</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-yellow-600 mr-3"></i>
+                            <span class="text-gray-400">+63 2 8123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-yellow-600 mr-3"></i>
+                            <span class="text-gray-400">info@royalrent.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-600 border-b border-yellow-600 pb-2">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe for special offers</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l w-full bg-gray-800 border border-gray-700">
+                        <button class="bg-yellow-600 text-black px-4 py-2 rounded-r hover:bg-yellow-700">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 Royal Rent. All rights reserved. | <a href="#" class="hover:text-yellow-600">Privacy Policy</a> | <a href="#" class="hover:text-yellow-600">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="chatToggle" class="bg-yellow-600 text-white p-4 rounded-full shadow-lg hover:bg-yellow-700 transition">
+            <i class="fas fa-comment-dots text-xl"></i>
+        </button>
+        <div id="chatBox" class="bg-white rounded-lg shadow-xl w-80 h-96 absolute bottom-16 right-0 flex flex-col" style="display: none;">
+            <div class="bg-yellow-600 text-white p-3 rounded-t-lg flex justify-between items-center">
+                <h3 class="font-bold">Customer Support</h3>
+                <button id="closeChat" class="text-white hover:text-black">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="chatMessages" class="flex-1 p-4 overflow-y-auto">
+                <div class="mb-3">
+                    <div class="bg-gray-200 inline-block p-2 rounded-lg max-w-xs">
+                        Hello! How can we help you today?
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 border-t">
+                <input type="text" id="chatInput" placeholder="Type your message..." 
+                       class="w-full p-2 border rounded focus:outline-none focus:ring-1 focus:ring-yellow-500">
+                <button id="sendMessage" class="mt-2 bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+                    Send
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Chat Functionality
+        document.getElementById('chatToggle').addEventListener('click', function() {
+            document.getElementById('chatBox').classList.toggle('hidden');
+        });
+        
+        document.getElementById('closeChat').addEventListener('click', function() {
+            document.getElementById('chatBox').classList.add('hidden');
+        });
+        
+        document.getElementById('sendMessage').addEventListener('click', function() {
+            const input = document.getElementById('chatInput');
+            if (input.value.trim() !== '') {
+                const chatMessages = document.getElementById('chatMessages');
+                chatMessages.innerHTML += `
+                    <div class="mb-3 text-right">
+                        <div class="bg-yellow-100 inline-block p-2 rounded-lg max-w-xs">
+                            ${input.value}
+                        </div>
+                    </div>
+                `;
+                input.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Simulate reply after 1 second
+                setTimeout(() => {
+                    chatMessages.innerHTML += `
+                        <div class="mb-3">
+                            <div class="bg-gray-200 inline-block p-2 rounded-lg max-w-xs">
+                                Thank you for your message! Our team will respond within 24 hours.
+                            </div>
+                        </div>
+                    `;
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Royal Rental</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .filter-section {
+            transition: all 0.3s ease;
+        }
+        .active-filter {
+            background-color: #d97706;
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="/Images/King_s_Crown-removebg-preview.png" alt="Royal Rent Logo" class="h-10 mr-2">
+                <span class="text-2xl font-bold text-gray-800">ROYAL RENT</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="text-gray-800 hover:text-yellow-600 font-medium">Home</a>
+                <a href="login.html" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">
+                    <i class="fas fa-user mr-2"></i>Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">All Rental Vehicles</h1>
+                <p class="text-gray-600">Choose from our wide selection of vehicles</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <span class="text-sm text-gray-600 mr-2">Sort by:</span>
+                <select id="sortBy" class="border rounded px-3 py-2 focus:ring-2 focus:ring-yellow-500">
+                    <option value="price-asc">Price (Low to High)</option>
+                    <option value="price-desc">Price (High to Low)</option>
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="name-desc">Name (Z-A)</option>
+                    <option value="popular">Most Popular</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8 filter-section">
+            <h2 class="text-xl font-bold mb-4 text-gray-800">Filter Vehicles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Vehicle Type -->
+                <div>
+                    <h3 class="font-medium mb-2">Vehicle Type</h3>
+                    <div class="space-y-2">
+                        <button class="filter-btn type-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-type="all">All Types</button>
+                        <button class="filter-btn type-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-type="sedan">Sedan</button>
+                        <button class="filter-btn type-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-type="suv">SUV</button>
+                        <button class="filter-btn type-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-type="van">Van</button>
+                        <button class="filter-btn type-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-type="luxury">Luxury</button>
+                    </div>
+                </div>
+                
+                <!-- Price Range -->
+                <div>
+                    <h3 class="font-medium mb-2">Price Range (₱/day)</h3>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <input type="number" id="minPrice" placeholder="Min" class="w-full p-2 border rounded">
+                        <span>to</span>
+                        <input type="number" id="maxPrice" placeholder="Max" class="w-full p-2 border rounded">
+                    </div>
+                    <button id="applyPrice" class="bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-700 text-sm">Apply</button>
+                </div>
+                
+                <!-- Transmission -->
+                <div>
+                    <h3 class="font-medium mb-2">Transmission</h3>
+                    <div class="space-y-2">
+                        <button class="filter-btn transmission-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-transmission="all">All</button>
+                        <button class="filter-btn transmission-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-transmission="automatic">Automatic</button>
+                        <button class="filter-btn transmission-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-transmission="manual">Manual</button>
+                    </div>
+                </div>
+                
+                <!-- Seating Capacity -->
+                <div>
+                    <h3 class="font-medium mb-2">Seating Capacity</h3>
+                    <div class="space-y-2">
+                        <button class="filter-btn seats-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-seats="all">All</button>
+                        <button class="filter-btn seats-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-seats="4">4 seats</button>
+                        <button class="filter-btn seats-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-seats="7">7 seats</button>
+                        <button class="filter-btn seats-btn px-3 py-1 rounded-full border hover:bg-yellow-600 hover:text-white hover:border-yellow-600" data-seats="10">10+ seats</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vehicle Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8" id="vehicleGrid">
+            <!-- Vehicle cards will be dynamically inserted here -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center mt-8">
+            <nav class="inline-flex rounded-md shadow">
+                <button id="prevPage" class="px-3 py-1 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div id="pageNumbers" class="flex">
+                    <!-- Page numbers will be inserted here -->
+                </div>
+                <button id="nextPage" class="px-3 py-1 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-600">Royal Rent</h3>
+                    <p class="text-gray-400">Your trusted car rental partner in the Philippines since 2015.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-600">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-yellow-600">Home</a></li>
+                        <li><a href="vehicles.html" class="text-gray-400 hover:text-yellow-600">All Vehicles</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-yellow-600">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-yellow-600">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-600">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-yellow-600 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Makati City, Philippines</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-yellow-600 mr-3"></i>
+                            <span class="text-gray-400">+63 2 8123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-yellow-600 mr-3"></i>
+                            <span class="text-gray-400">info@royalrent.ph</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-600">Newsletter</h3>
+                    <p class="text-gray-400 mb-2">Subscribe for special offers</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l w-full bg-gray-800 border border-gray-700">
+                        <button class="bg-yellow-600 text-black px-4 py-2 rounded-r hover:bg-yellow-700">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 Royal Rent. All rights reserved. | <a href="#" class="hover:text-yellow-600">Privacy Policy</a> | <a href="#" class="hover:text-yellow-600">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Sample vehicle data (replace with your actual data from backend)
+        const vehicles = [
+            {
+                id: 1,
+                name: "Toyota Vios",
+                type: "sedan",
+                price: 1500,
+                seats: 5,
+                transmission: "automatic",
+                image: "YOUR_VIOS_IMAGE.PNG",
+                status: "available",
+                rating: 4.5,
+                reviews: 128,
+                features: ["Air Conditioning", "Bluetooth", "GPS"]
+            },
+            {
+                id: 2,
+                name: "Toyota Innova",
+                type: "van",
+                price: 2200,
+                seats: 7,
+                transmission: "automatic",
+                image: "YOUR_INNOVA_IMAGE.PNG",
+                status: "available",
+                rating: 4.7,
+                reviews: 95,
+                features: ["Spacious", "Comfortable", "Family-friendly"]
+            },
+            {
+                id: 3,
+                name: "Mitsubishi Montero",
+                type: "suv",
+                price: 2800,
+                seats: 7,
+                transmission: "automatic",
+                image: "YOUR_MONTERO_IMAGE.PNG",
+                status: "available",
+                rating: 4.8,
+                reviews: 112,
+                features: ["4WD", "Powerful", "Adventure-ready"]
+            },
+            {
+                id: 4,
+                name: "Honda City",
+                type: "sedan",
+                price: 1600,
+                seats: 5,
+                transmission: "automatic",
+                image: "YOUR_CITY_IMAGE.PNG",
+                status: "booked",
+                rating: 4.3,
+                reviews: 87,
+                features: ["Fuel Efficient", "Compact", "Easy Parking"]
+            },
+            {
+                id: 5,
+                name: "Toyota Fortuner",
+                type: "suv",
+                price: 3000,
+                seats: 7,
+                transmission: "automatic",
+                image: "YOUR_FORTUNER_IMAGE.PNG",
+                status: "available",
+                rating: 4.6,
+                reviews: 104,
+                features: ["Premium Sound", "Leather Seats", "Sunroof"]
+            },
+            {
+                id: 6,
+                name: "Nissan Navara",
+                type: "pickup",
+                price: 2500,
+                seats: 5,
+                transmission: "manual",
+                image: "YOUR_NAVARA_IMAGE.PNG",
+                status: "available",
+                rating: 4.4,
+                reviews: 76,
+                features: ["Durable", "Cargo Space", "Off-road Capable"]
+            },
+            {
+                id: 7,
+                name: "Toyota Hiace",
+                type: "van",
+                price: 3500,
+                seats: 12,
+                transmission: "manual",
+                image: "YOUR_HIACE_IMAGE.PNG",
+                status: "available",
+                rating: 4.2,
+                reviews: 68,
+                features: ["Large Capacity", "Tourist Van", "Group Travel"]
+            },
+            {
+                id: 8,
+                name: "Mercedes-Benz C200",
+                type: "luxury",
+                price: 6500,
+                seats: 5,
+                transmission: "automatic",
+                image: "YOUR_MERCEDES_IMAGE.PNG",
+                status: "available",
+                rating: 4.9,
+                reviews: 53,
+                features: ["Premium Interior", "Advanced Safety", "Luxury Experience"]
+            },
+            {
+                id: 9,
+                name: "Suzuki Swift",
+                type: "hatchback",
+                price: 1800,
+                seats: 5,
+                transmission: "automatic",
+                image: "YOUR_SWIFT_IMAGE.PNG",
+                status: "available",
+                rating: 4.1,
+                reviews: 42,
+                features: ["Compact", "City Driving", "Easy Maneuver"]
+            }
+        ];
+
+        // Pagination variables
+        let currentPage = 1;
+        const vehiclesPerPage = 6;
+        let filteredVehicles = [...vehicles];
+        
+        // DOM Elements
+        const vehicleGrid = document.getElementById('vehicleGrid');
+        const pageNumbers = document.getElementById('pageNumbers');
+        const prevPage = document.getElementById('prevPage');
+        const nextPage = document.getElementById('nextPage');
+        const sortBy = document.getElementById('sortBy');
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderVehicles();
+            renderPagination();
+            
+            // Set active filter for "All Types" by default
+            document.querySelector('[data-type="all"]').classList.add('active-filter');
+            document.querySelector('[data-transmission="all"]').classList.add('active-filter');
+            document.querySelector('[data-seats="all"]').classList.add('active-filter');
+        });
+        
+        // Render vehicles based on current filters and page
+        function renderVehicles() {
+            vehicleGrid.innerHTML = '';
+            
+            const startIndex = (currentPage - 1) * vehiclesPerPage;
+            const endIndex = startIndex + vehiclesPerPage;
+            const vehiclesToShow = filteredVehicles.slice(startIndex, endIndex);
+            
+            if (vehiclesToShow.length === 0) {
+                vehicleGrid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-car text-4xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-600">No vehicles found</h3>
+                        <p class="text-gray-500">Try adjusting your filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            vehiclesToShow.forEach(vehicle => {
+                const vehicleCard = document.createElement('div');
+                vehicleCard.className = 'vehicle-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300';
+                vehicleCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${vehicle.image}" alt="${vehicle.name}" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold ${vehicle.status === 'available' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                            ${vehicle.status === 'available' ? 'Available' : 'Booked'}
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">${vehicle.name}</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <span>${vehicle.rating}</span>
+                                <span class="text-gray-500 text-sm ml-1">(${vehicle.reviews})</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <div class="flex items-center mr-4">
+                                <i class="fas fa-users mr-1"></i>
+                                <span>${vehicle.seats} seats</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-cog mr-1"></i>
+                                <span>${vehicle.transmission === 'automatic' ? 'Automatic' : 'Manual'}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            ${vehicle.features.map(feature => `
+                                <span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded mr-1 mb-1">${feature}</span>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-2xl font-bold text-yellow-600">₱${vehicle.price.toLocaleString()}</span>
+                                <span class="text-gray-500">/day</span>
+                            </div>
+                            <button class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition ${vehicle.status !== 'available' ? 'opacity-50 cursor-not-allowed' : ''}" ${vehicle.status !== 'available' ? 'disabled' : ''}>
+                                ${vehicle.status === 'available' ? 'Rent Now' : 'Unavailable'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                vehicleGrid.appendChild(vehicleCard);
+            });
+        }
+        
+        // Render pagination buttons
+        function renderPagination() {
+            pageNumbers.innerHTML = '';
+            const pageCount = Math.ceil(filteredVehicles.length / vehiclesPerPage);
+            
+            if (pageCount <= 1) return;
+            
+            // Previous button state
+            prevPage.disabled = currentPage === 1;
+            
+            // Page numbers
+            for (let i = 1; i <= pageCount; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `px-3 py-1 border-t border-b border-gray-300 ${currentPage === i ? 'bg-yellow-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`;
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    renderVehicles();
+                    renderPagination();
+                });
+                pageNumbers.appendChild(pageBtn);
+            }
+            
+            // Next button state
+            nextPage.disabled = currentPage === pageCount;
+        }
+        
+        // Event listeners for pagination
+        prevPage.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderVehicles();
+                renderPagination();
+            }
+        });
+        
+        nextPage.addEventListener('click', () => {
+            const pageCount = Math.ceil(filteredVehicles.length / vehiclesPerPage);
+            if (currentPage < pageCount) {
+                currentPage++;
+                renderVehicles();
+                renderPagination();
+            }
+        });
+        
+        // Filter buttons functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons in this group
+                const groupClass = this.classList.contains('type-btn') ? 'type-btn' : 
+                                  this.classList.contains('transmission-btn') ? 'transmission-btn' : 'seats-btn';
+                document.querySelectorAll(`.${groupClass}`).forEach(b => b.classList.remove('active-filter'));
+                
+                // Add active class to clicked button
+                this.classList.add('active-filter');
+                
+                applyFilters();
+            });
+        });
+        
+        // Price range filter
+        document.getElementById('applyPrice').addEventListener('click', applyFilters);
+        
+        // Sort functionality
+        sortBy.addEventListener('change', applyFilters);
+        
+        // Apply all filters and sorting
+        function applyFilters() {
+            // Reset to first page when filters change
+            currentPage = 1;
+            
+            // Get active filters
+            const typeFilter = document.querySelector('.type-btn.active-filter').dataset.type;
+            const transmissionFilter = document.querySelector('.transmission-btn.active-filter').dataset.transmission;
+            const seatsFilter = document.querySelector('.seats-btn.active-filter').dataset.seats;
+            const minPrice = document.getElementById('minPrice').value;
+            const maxPrice = document.getElementById('maxPrice').value;
+            const sortValue = sortBy.value;
+            
+            // Apply filters
+            filteredVehicles = vehicles.filter(vehicle => {
+                // Type filter
+                if (typeFilter !== 'all' && vehicle.type !== typeFilter) return false;
+                
+                // Transmission filter
+                if (transmissionFilter !== 'all' && vehicle.transmission !== transmissionFilter) return false;
+                
+                // Seats filter
+                if (seatsFilter !== 'all') {
+                    if (seatsFilter === '4' && vehicle.seats > 4) return false;
+                    if (seatsFilter === '7' && (vehicle.seats < 5 || vehicle.seats > 7)) return false;
+                    if (seatsFilter === '10' && vehicle.seats < 10) return false;
+                }
+                
+                // Price range filter
+                if (minPrice && vehicle.price < parseInt(minPrice)) return false;
+                if (maxPrice && vehicle.price > parseInt(maxPrice)) return false;
+                
+                return true;
+            });
+            
+            // Apply sorting
+            switch(sortValue) {
+                case 'price-asc':
+                    filteredVehicles.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filteredVehicles.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name-asc':
+                    filteredVehicles.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'name-desc':
+                    filteredVehicles.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case 'popular':
+                    filteredVehicles.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+            
+            renderVehicles();
+            renderPagination();
+        }
+    </script>
+</body>
+</html>
